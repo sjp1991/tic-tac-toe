@@ -1,5 +1,8 @@
+import { Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './bootstrap-3.3.7-dist/css/bootstrap.css';
 import './index.css';
 
 function Square(props) {
@@ -12,9 +15,9 @@ function Square(props) {
 
 function BoardButton(props) {
     return (
-        <button className="boardButton" onClick={props.onClick}>
+        <Button className="board-button" onClick={props.onClick}>
             {props.value}
-        </button>
+        </Button>
     );
 }
 
@@ -30,22 +33,16 @@ class Board extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="board-row">
+            <div className="square-container">
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
                     {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
                     {this.renderSquare(3)}
                     {this.renderSquare(4)}
                     {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
                     {this.renderSquare(6)}
                     {this.renderSquare(7)}
                     {this.renderSquare(8)}
-                </div>
             </div>
         );
     }
@@ -120,6 +117,7 @@ class Game extends React.Component {
         if (this.state.stepNumber > 0) {
             return (
                 <BoardButton
+                    float='right'
                     value='Back to Current Board'
                     onClick={() => this.jumpTo(this.state.history.length - 1)}
                 />
@@ -136,13 +134,15 @@ class Game extends React.Component {
 
         const moves = history.map((step, move) => {
             const desc = move ? move + '. ' + history[move].mover + ' placed on ' + history[move].placement : null;
-            return (
-                <li key = {move}>
-                    <button onClick={() => this.jumpTo(move)}>
-                        {desc}
-                    </button>
-                </li>
-            );
+            if (desc !== null) {
+                return (
+                    <div key = {move}>
+                        <Button bsStyle="link" onClick={() => this.jumpTo(move)}>
+                            {desc}
+                        </Button>
+                    </div>
+                );
+            }
         });
 
         let status;
@@ -156,25 +156,24 @@ class Game extends React.Component {
 
         return (
             <div className="game">
-                <div className="game-board">
-                    <div>{status}</div>
+                <Col lg={1} md={2} />
+                <Col lg={5} md={6} sm={7} className="game-board">
+                    <h1>{status}</h1>
                     <Board
                         squares = {current.squares}
                         onClick = {(i) => this.handleClickSquare(i)}
                     />
-                    <div className="boardButton">
-                        {this.renderReplay()}
-                    </div>
-                    <div className="boardButton">
-                        {this.renderCurrentBoard()}
+                    <div className="board-buttons">
+                            {this.renderReplay()}
                     </div>
 
-                </div>
+                </Col>
 
-                <div className="game-info">
-                    <div>View History</div>
+                <Col lg={3} md={3} sm={5} className="game-info">
+                    <h2>View History</h2>
                     <div>{moves}</div>
-                </div>
+                    {this.renderCurrentBoard()}
+                </Col>
             </div>
         );
     }

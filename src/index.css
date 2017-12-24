@@ -1,6 +1,8 @@
 body {
-  font: 20px "Century Gothic", Futura, sans-serif;
+  font: 20px "Century Gothic", Futura, sans-serif !important;
+  color: #333 !important;
   margin: 20px;
+  background-color: #b2d9c4 !important;
 }
 
 ol, ul {
@@ -13,14 +15,22 @@ ol, ul {
   float: right;
 }
 
+#history {
+  color: #333 !important;
+}
+
+#history:focus {
+  outline: none;
+}
 
 .status {
+  margin-left: 10px;
   margin-bottom: 10px;
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: #b2d9c4;
+  border: 0px;
   float: left;
   font-size: 75px;
   font-weight: bold;
@@ -30,7 +40,61 @@ ol, ul {
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 100%;
+  width: 150px;
+  text-shadow: 2px 2px 5px #bbb;
+}
+
+.sq0 {
+  border-right: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+}
+
+.sq1 {
+  border-left: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+  border-right: 3px solid #eee;  
+} 
+.sq2 {
+  border-left: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+}
+.sq3 {
+  border-top: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+  border-right: 3px solid #eee;  
+}
+.sq4 {
+  border: 3px solid #eee;
+} 
+
+.sq5 {
+  border-top: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+  border-left: 3px solid #eee;  
+} 
+
+.sq6 {
+  border-top: 3px solid #eee;
+  border-right: 3px solid #eee;  
+} 
+
+.sq7 {
+  border-top: 3px solid #eee;
+  border-left: 3px solid #eee;
+  border-right: 3px solid #eee;  
+} 
+
+.sq8 {
+  border-top: 3px solid #eee;
+  border-left: 3px solid #eee;
+}
+
+#square⛌ {
+  color: #e47b75;
+}
+
+#square◯ {
+  color: #f0e596;
 }
 
 .square:focus {
@@ -39,8 +103,12 @@ ol, ul {
 
 .square-container {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 150px 150px 150px;
   grid-template-rows: 33% 33% 33%;
+}
+
+.title {
+  font-style: bold;
 }
 
 .kbd-navigation .sqaure:focus {
@@ -52,7 +120,11 @@ ol, ul {
   flex-direction: row;
 }
 
+.game-board {
+}
+
 .game-info {
+  text-align: center;
+  background-color: #c0e2cf !important;
   margin-left: 20px;
-  color: black;
 }
